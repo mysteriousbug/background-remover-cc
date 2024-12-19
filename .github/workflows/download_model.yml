@@ -3,7 +3,7 @@ name: Download Model
 on:
   push:
     branches:
-      - main  # Run on push to the main branch
+      - main 
   pull_request:
     branches:
       - main
