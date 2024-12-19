@@ -26,4 +26,4 @@ jobs:
         git config --global user.email "github-actions@github.com"
         git add u2net.onnx
         git commit -m "Add u2net.onnx model"
-        git push
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
