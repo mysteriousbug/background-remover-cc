@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Remover App</title>
+
+    <!-- Google Fonts (Roboto for readability, Poppins for style) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External CSS -->
+    <style>
+      /* Reset some basic styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f7fc;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
+
+      /* Main container */
+      .drop-zone {
+        border: 2px dashed #ccc;
+        padding: 40px;
+        width: 80vw;
+        height: 60vh;
+        max-width: 600px;
+        border-radius: 12px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Drag over effect */
+      .drop-zone.dragover {
+        background-color: #f0f0f0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Title styling */
+      h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      /* File input styling */
+      input[type="file"] {
+        display: none;
+      }
+
+      /* Custom button style */
+      .btn-upload {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 30px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      /* Hover effect for button */
+      .btn-upload:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+      }
+
+      /* Submit button effect */
+      input[type="submit"] {
+        display: none;
+      }
+
+      /* Optional: Add small break points for responsiveness */
+      @media (max-width: 768px) {
+        .drop-zone {
+          width: 90vw;
+          height: 70vh;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dropZone" class="drop-zone">
+      <h1>Background Removal App</h1>
+     
+      <h3>Cloud Computing AAT</h3>
+      <br>
+
+      <!-- File Upload Form -->
+      <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+        <input id="fileInput" type="file" name="file" />
+        <!-- Hidden Submit Button -->
+        <input type="submit" value="rm" />
+      </form>
+
+      <!-- Custom Styled Button -->
+      <button class="btn-upload" onclick="fileInput.click()">Upload Image</button>
+    </div>
+
+    <script>
+      let dropZone = document.getElementById('dropZone');
+      let fileInput = document.getElementById('fileInput');
+      let uploadForm = document.getElementById('uploadForm');
+
+      // Trigger file input when the drop-zone is clicked
+      dropZone.addEventListener('click', function () {
+        fileInput.click();
+      });
+
+      // Handle file selection from input
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files.length > 0) {
+          uploadForm.submit();
+        }
+      });
+    </script>
+  </body>
+</html>
