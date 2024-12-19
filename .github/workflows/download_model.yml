@@ -3,7 +3,7 @@ name: Download Model
 on:
   push:
     branches:
-      - main 
+      - main  # Run on push to the main branch
   pull_request:
     branches:
       - main
@@ -16,14 +16,23 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up Git LFS
+      run: |
+        git lfs install
+
     - name: Download u2net.onnx model
       run: |
         curl -L https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx -o u2net.onnx
+
+    - name: Track u2net.onnx with Git LFS
+      run: |
+        git lfs track "u2net.onnx"
 
     - name: Commit and push the model file
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+        git add .gitattributes  # Git LFS metadata file
         git add u2net.onnx
         git commit -m "Add u2net.onnx model"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
